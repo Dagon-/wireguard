@@ -1,0 +1,19 @@
+---
+
+- name: Add unit file
+  copy:
+    src: files/route53update.service
+    dest: /etc/systemd/system/route53-update.service
+
+- name: Copy script
+  template:
+    src: route53update.sh.j2
+    dest: /usr/local/sbin/route53update.sh
+    mode: 0744
+
+- name: Start the service
+  systemd:
+    state: started
+    daemon_reload: yes
+    enabled: yes
+    name: route53update

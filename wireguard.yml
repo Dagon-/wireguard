@@ -13,3 +13,7 @@
     - name: Install wireguard
       include_role:
         name: roles/wireguard
+
+    - name: Add dns update components
+      include_role:
+        name: roles/route53update        

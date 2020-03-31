@@ -1,0 +1,10 @@
+[Unit]
+Description=Update a route53 record on startup
+After=default.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/route53update.sh
+
+[Install]
+WantedBy=default.target
