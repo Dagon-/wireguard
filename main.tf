@@ -54,6 +54,7 @@ resource "aws_resourcegroups_group" "vpn_group" {
 resource "aws_instance" "vpn" {
   ami           = "ami-04d5cc9b88f9d1d39"
   instance_type = "t3a.nano"
+  cpu_credits = "standard"
 
   iam_instance_profile = "ec2WriteOvpnZone"
 
