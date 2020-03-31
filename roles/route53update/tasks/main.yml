@@ -3,7 +3,7 @@
 - name: Add unit file
   copy:
     src: files/route53update.service
-    dest: /etc/systemd/system/route53-update.service
+    dest: /etc/systemd/system/route53update.service
 
 - name: Copy script
   template:
