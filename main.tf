@@ -54,7 +54,6 @@ resource "aws_resourcegroups_group" "vpn_group" {
 resource "aws_instance" "vpn" {
   ami           = "ami-04d5cc9b88f9d1d39"
   instance_type = "t3a.nano"
-  cpu_credits = "standard"
 
   iam_instance_profile = "ec2WriteOvpnZone"
 
@@ -62,6 +61,10 @@ resource "aws_instance" "vpn" {
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.vpn_security_group.id]
   key_name                    = "vpn-key"
+
+  credit_specification {
+    cpu_credits = "standard"
+  }
 
   root_block_device {
     volume_type = "gp2"
