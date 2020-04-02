@@ -1,10 +1,10 @@
 
 [Interface]
 PrivateKey = {{ client_private_key }}
-Address = 10.0.0.2/32
+Address = 10.0.0.2/32,fd42:42:42::2/64
 DNS = 1.1.1.1,1.0.0.1
 
 [Peer]
 PublicKey = {{ server_public_key }}
 Endpoint = {{ server_endpoint }}:1194
-AllowedIPs = 0.0.0.0/0
+AllowedIPs = 0.0.0.0/0,::/0
