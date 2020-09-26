@@ -7,8 +7,12 @@ terraform.tfstate
 terraform.tfstate.backup
 versions.tf
 .terraform
-
-
+*.swp
+package-lock.json
+__pycache__
+.pytest_cache
+.env
+*.egg-info
 
 # vscode #
 ##########
@@ -48,3 +52,11 @@ versions.tf
 ######################
 
 *.log 
+
+
+# CDK asset staging directory
+
+cdk.context.json
+.cdk.staging/
+cdk.out/
+*.tabl.json
