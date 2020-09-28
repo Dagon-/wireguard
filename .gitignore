@@ -60,3 +60,5 @@ cdk.context.json
 .cdk.staging/
 cdk.out/
 *.tabl.json
+requirements.txt
+setup.py
