@@ -1,0 +1,3 @@
+dns_zone: "Z1KOZVN1E5T0CQ"
+domain: ovpn.gdn
+endpoint: "{{ area }}.{{ domain }}"

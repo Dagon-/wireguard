@@ -1,4 +1,17 @@
 ---
+- name: "Create inventory"
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: no
+
+  tasks:
+
+    - name: Adding hosts to inventory group 'wireguard'
+      add_host:
+        hostname: "{{ endpoint }}"
+        groups: "wireguard"
+
 #################################################################
 # Create wireguard server
 
@@ -9,7 +22,7 @@
   become: yes
 
   tasks:
-
+      
     - name: Install wireguard
       include_role:
         name: roles/wireguard
