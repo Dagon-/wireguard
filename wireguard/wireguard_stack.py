@@ -39,7 +39,7 @@ class WireguardCdkStack(core.Stack):
         route53_role = iam.Role.from_role_arn(self, "role_id", "arn:aws:iam::585823398980:role/ec2WriteOvpnZone" )
 
         instance = ec2.Instance(self, "instance",
-            instance_type = ec2.InstanceType("t3a.nano"),
+            instance_type = ec2.InstanceType("t3a.micro"),
             machine_image = amzn_linux,
             vpc           = vpc,
             role          = route53_role,
@@ -47,7 +47,7 @@ class WireguardCdkStack(core.Stack):
         )
 
         instance.connections.allow_from(ec2.Peer.ipv4("109.255.202.235/32"), ec2.Port.tcp(22), "Allow ssh")
-        instance.connections.allow_from(ec2.Peer.ipv4("109.255.202.235/32"), ec2.Port.udp(443), "Allow VPN traffic")
+        instance.connections.allow_from_any_ipv4(ec2.Port.udp(1194), "Allow VPN traffic")
 
         ### DNS records
         # Pull zone object
