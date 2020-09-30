@@ -62,6 +62,10 @@ class WireguardCdkStack(core.Stack):
             ttl         = core.Duration.minutes(1)
         )
 
+        ### Bucket
+        bucket = s3.Bucket(self, "wireguard",
+            bucket_name = "wireguard-conf")
+
         ### Resource group
         rg.CfnGroup(self, "env-group",
             name           = "wireguard",

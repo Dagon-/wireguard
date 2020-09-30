@@ -137,8 +137,40 @@
 - name: Copy config to local machine
   fetch:
     src: "/tmp/{{ item }}"
-    dest: "~/Downloads/{{ item }}"
+    dest: "/tmp/{{ item }}"
     flat: yes
   loop:
     - client.wg0.conf
     - client.wg0.png
+
+- name: Upload client config to bucket
+  amazon.aws.aws_s3:
+    bucket: wireguard-conf
+    object: "{{ item }}"
+    src: "/tmp/{{ item }}"
+    mode: put
+  loop:
+    - client.wg0.conf
+    - client.wg0.png
+  delegate_to: localhost
+  become: false
+
+# Cleanup
+
+- name: Delete config files
+  file:
+    path: "/tmp/{{ item }}"
+    state: absent
+  loop:
+    - client.wg0.conf
+    - client.wg0.png
+
+- name: Delete local config files
+  file:
+    path: "/tmp/{{ item }}"
+    state: absent
+  loop:
+    - client.wg0.conf
+    - client.wg0.png
+  delegate_to: localhost
+  become: false
